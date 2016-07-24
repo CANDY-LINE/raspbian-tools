@@ -2,6 +2,8 @@
 
 # Wait for RPi to respond to SSH request
 
+PASSWORD=${PASSWORD:-raspberry}
+
 function err {
   echo -e "\033[91m[ERROR] $1\033[0m"
 }
@@ -19,7 +21,7 @@ function expect_ssh {
     pi@raspberrypi.local "hostnamectl"
   expect {
       "password:" {
-        send "raspberry\r"
+        send "${PASSWORD}\r"
         interact
       }
       "ssh:" {
