@@ -28,14 +28,18 @@ function expect_ssh {
         exit 1
       }
   }' 2>&1 /dev/null)
-  return "$?"
+  RET="$?"
 }
 
-MAX=1
+MAX=100
 COUNTER=0
 echo -n "Testing SSH to pi@raspberrypi.local "
-while [ expect_ssh != "0" ] && [ ${COUNTER} -lt ${MAX} ];
+while [ ${COUNTER} -lt ${MAX} ];
 do
+    expect_ssh
+    if [ ${RET} == "0" ]; then
+      break
+    fi
     sleep 1
     let COUNTER=COUNTER+1
     echo -n "."
