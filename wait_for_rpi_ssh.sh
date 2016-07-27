@@ -2,7 +2,9 @@
 
 # Wait for RPi to respond to SSH request
 
-PASSWORD=${PASSWORD:-raspberry}
+SSH_USER=${SSH_USER:-pi}
+SSH_PASSWORD=${SSH_PASSWORD:-raspberry}
+RPI_HOST=${RPI_HOST:-raspberrypi.local}
 
 function err {
   echo -e "\033[91m[ERROR] $1\033[0m"
@@ -18,10 +20,10 @@ function expect_ssh {
     -o ConnectTimeout=1 \
     -o StrictHostKeyChecking=no \
     -o UserKnownHostsFile=/dev/null \
-    pi@raspberrypi.local "hostnamectl"
+    ${SSH_USER}@${RPI_HOST} "hostnamectl"
   expect {
       "password:" {
-        send "${PASSWORD}\r"
+        send "${SSH_PASSWORD}\r"
         interact
       }
       "ssh:" {
@@ -51,5 +53,5 @@ then
   err "Make sure your raspberrypi is connected to the network"
 else
   info "OK"
-  info "SSH is ready. Run 'ssh pi@raspberrypi.local'"
+  info "SSH is ready. Run 'ssh ${SSH_USER}@${RPI_HOST}'"
 fi
