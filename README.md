@@ -6,8 +6,8 @@ raspbian-tools
 
 # ToC
 
-* [Raspbian Flash Tool](#Raspbian Flash Tool)
-* [Waiting for RPi's SSH to be available](#Waiting for RPi's SSH to be available)
+* [Raspbian Flash Tool](#raspbian-flash-tool)
+* [Waiting for RPi's SSH to be available](#waiting-for-rpis-ssh-to-be-available)
 
 # Raspbian Flash Tool
 
