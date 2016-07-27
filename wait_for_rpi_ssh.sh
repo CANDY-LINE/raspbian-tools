@@ -34,7 +34,6 @@ function expect_ssh {
       "ssh:" {
         exit 1
       }
-      eof
   }' 2>&1 /dev/null)
   RET="$?"
 }

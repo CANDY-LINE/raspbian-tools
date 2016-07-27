@@ -26,7 +26,7 @@ function download_raspbian_img {
 }
 
 function look_for_sd_card_id {
-  for t in Windows_FAT_32 Linux; do
+  for t in Windows_FAT_32 DOS_FAT_32 Windows_NTFS Linux; do
     SD_ID=`diskutil list | grep ${t} | awk -F' ' '{print $6}'`
     if [ -z "${SD_ID}" ]; then
       SD_ID=`diskutil list | grep ${t} | awk -F' ' '{print $5}'`
@@ -50,7 +50,7 @@ function look_for_sd_card_id {
 function confirm_dd {
   info "I've found the following SD card."
   diskutil list "/dev/${SD_ID}"
-  alert "I'm going to flash Raspbian OS to the card, are you sure? (y/N)"
+  alert "I'm going to flash Raspbian OS to the SD card. Are you sure to continue? (y/N)"
   read ANSWER
   if [ -z ${ANSWER} ]; then
     ANSWER=N
