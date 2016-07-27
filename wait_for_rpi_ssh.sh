@@ -52,7 +52,10 @@ do
   let COUNTER=COUNTER+1
   echo -n "."
 done
-if [ ${COUNTER} -ge ${MAX} ];
+if [ ${COUNTER} -ge 1 ];
+then
+  echo
+elif [ ${COUNTER} -ge ${MAX} ];
 then
   err "TIMEOUT"
   err "Make sure your raspberrypi is connected to the network"
