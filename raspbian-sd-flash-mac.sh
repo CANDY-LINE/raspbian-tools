@@ -63,14 +63,20 @@ function confirm_dd {
   fi
 }
 
-function perform_dd {
+function unmount_sd {
   RET=""
   while [ "${RET}" != "0" ]; do
     RET=`diskutil unmountDisk /dev/${SD_ID}`
     RET="$?"
   done
+}
+
+function perform_dd {
+  unmount_sd
   info "Starting dd...."
   dd bs=1m if=${IMG_DIR}/raspbian_latest.img of=/dev/r${SD_ID}
+  sleep 1
+  unmount_sd
 }
 
 assert_root
