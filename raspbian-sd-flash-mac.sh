@@ -50,7 +50,7 @@ function look_for_sd_card_id {
 function confirm_dd {
   info "I've found the following SD card."
   diskutil list "/dev/${SD_ID}"
-  alert "I'm going to flash Raspbian OS to the card, are you sure? (y/N)"
+  alert "I'm going to flash Raspbian OS to the SD card. Are you sure to continue? (y/N)"
   read ANSWER
   if [ -z ${ANSWER} ]; then
     ANSWER=N
